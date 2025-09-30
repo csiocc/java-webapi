@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot: Run WebApiApplication",
+      "request": "launch",
+      "mainClass": "com.example.webapi.WebApiApplication",
+      "projectName": "repos_81ab13d6",
+      "cwd": "${workspaceFolder}",
+      "args": ""
+    }
+  ]
+}

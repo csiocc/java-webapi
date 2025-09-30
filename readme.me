@@ -1,0 +1,129 @@
+1. Prompt
+erstellen mir einen plan für ein Ein WebApi in Java 
+mit der korrekten Architektur von Controller, Business logic und Repository und erkläre mir alles genau
+
+Nachdem ich alles genau nach vorgabe aufgebaut habe habe ich
+
+mvn clean install
+mvn spring-boot:run
+
+ausgeführt und folgende Error meldungen erhalten:
+
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+[ERROR] 'modules.module[1]' specifies duplicate child module demo @ line 13, column 13 
+
+[ERROR]   The project com.example:webapi:0.0.1-SNAPSHOT (/home/csi_local/repos/TBZ/m319/kn07/my-webapi/pom.xml) has 1 error
+[ERROR]     'modules.module[1]' specifies duplicate child module demo @ line 13, column 13
+
+
+  <modules>
+    <module>demo</module>
+    <module>demo</module>   <----- gelöscht
+  </modules>
+
+danch nochmal:
+
+mvn clean install
+mvn spring-boot:run
+
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] webapi 0.0.1-SNAPSHOT .............................. FAILURE [  0.613 s]
+[INFO] demo 1.0-SNAPSHOT .................................. SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.898 s
+[INFO] Finished at: 2025-09-30T13:28:15+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.1.2:run (default-cli) on project webapi: Unable to find a suitable main class, please add a 'mainClass' property -> [Help 1]
+
+Problem: findet die main methode nicht, 
+Lösung: pom.xml anpassen
+
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project webapi: Fatal error compiling: java.lang.NoSuchFieldError: Class com.sun.tools.javac.tree.JCTree$JCImport does not have member field 'com.sun.tools.javac.tree.JCTree qualid' -> [Help 1]
+
+Problem: Kompiliert nicht weil ein import fehlschlägt java tree
+Lösung: Java Version in pom.xml anpassen
+
+mvn clean
+mvn spring-boot:run
+
+Server läuft
+
+KI Prompt: erkläre mir wie ich die WebApi auf Postman testen kann
+
+ich bekomme die webapi.postman_collection
+ich installiere postman desktop client
+ich erstelle neue user
+ich teste get all user und bekomme:
+
+    {
+        "id": 2,
+        "username": "alice",
+        "email": "alice@example.com",
+        "password": null
+    },
+    {
+        "id": 3,
+        "username": "peter",
+        "email": "peter@example.com",
+        "password": null
+    },
+    {
+        "id": 4,
+        "username": "edi",
+        "email": "edi@example.com",
+        "password": null
+    },
+    {
+        "id": 5,
+        "username": "ruedi",
+        "email": "ruedi@example.com",
+        "password": null
+    }
+
+ich teste get user by id, funktioniert
+ich teste update user, funktioniert
+ich teste delete user, funktioniert
+nach delete user/2
+get all user:
+
+    {
+        "id": 3,
+        "username": "peter",
+        "email": "peter@example.com",
+        "password": null
+    },
+    {
+        "id": 4,
+        "username": "edi",
+        "email": "edi@example.com",
+        "password": null
+    },
+    {
+        "id": 5,
+        "username": "ruedi",
+        "email": "ruedi@example.com",
+        "password": null
+    }
+
+Da ich momentan in der Firma gerade Ruby on Rails mit 
+Datenbanken am üben bin erstelle ich eine Rails App mit der ich auf die erstellte Datenbank zugreifen
+neue Benutzer erstellen, editieren und löschen kann.
+
+Ich lasse die selbe WebApi noch in Python erstellen.
+
+Prompt: erstelle mir genau die gleiche webapi welche wir in java gemacht haben auch noch in python
+
+Python & dependencies installieren
+venv starten
+server starten
+rails server starten
+fehler: falscher port
+lösung: port anpassen
+
+testen läuft alles.
+
+
+
